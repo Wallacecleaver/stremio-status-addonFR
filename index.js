@@ -910,7 +910,7 @@ function logConnection(ip, success) {
   console.log(`${success ? '✅' : '❌'} Tentative login — IP: ${ip} — ${success ? 'Succès' : 'Échec'}`);
 }
 
-app.post('/api/login', cookieAuthMiddleware, loginRateLimit, async (req, res) => {
+app.post('/api/login', loginRateLimit, async (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   const ip = req.ip;
   const { password } = req.body;
