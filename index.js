@@ -680,10 +680,6 @@ app.use(express.json({ limit: '50kb' }));
 app.use(cookieParser());
 
 app.use((req, res, next) => {
-  // HTTPS forcé — utilise req.hostname (safe avec trust proxy) au lieu de req.headers.host (injectable)
-  if (req.headers['x-forwarded-proto'] === 'http') {
-    return res.redirect(301, `https://${req.hostname}${req.originalUrl}`);
-  }
   // Headers sécurité
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
